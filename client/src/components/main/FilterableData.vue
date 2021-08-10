@@ -3,9 +3,24 @@
     <div className="header_notes-list">Your Notes</div>
 
     <div className="row_notes-list sortable-headers__border">
-      <div class="header__sortable-lists">Name</div>
-      <div class="header__sortable-lists">Last Modified</div>
-      <div class="header__sortable-lists">Category</div>
+      <div
+        class="header__sortable-lists"
+        @click="handleSortTypeValueChange('name')"
+      >
+        Name
+      </div>
+      <div
+        class="header__sortable-lists"
+        @click="handleSortTypeValueChange('date')"
+      >
+        Last Modified
+      </div>
+      <div
+        class="header__sortable-lists"
+        @click="handleSortTypeValueChange('category')"
+      >
+        Category
+      </div>
     </div>
 
     <!-- place data here and map through it -->
@@ -29,6 +44,7 @@ import DataRow from "./DataRow.vue";
 export default defineComponent({
   props: {
     notes: Array,
+    handleSortTypeValueChange: Function,
   },
   components: {
     DataRow,
