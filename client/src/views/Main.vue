@@ -81,10 +81,8 @@ export default defineComponent({
   },
   async created() {
     try {
-      console.log("trying to get API");
       API.getNotes()
         .then((res) => {
-          console.log(res.data);
           this.notes = res.data;
         })
         .catch((err) => console.error(err));

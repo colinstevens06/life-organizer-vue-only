@@ -1,9 +1,9 @@
 <template>
-  <div class="row_notes-list notes-list-results">
+  <router-link :to="'/notes/' + id" class="row_notes-list notes-list-results">
     <div>{{ name }}</div>
     <div>{{ date }}</div>
     <div className="result_category">{{ category }}</div>
-  </div>
+  </router-link>
 </template>
 
 
