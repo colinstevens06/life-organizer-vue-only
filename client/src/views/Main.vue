@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Building This</h1>
+    <FilterableData :notes="notes" />
   </div>
 </template>
 
@@ -9,29 +9,29 @@ import { defineComponent } from "vue";
 
 import API from "../utils/API";
 
+import FilterableData from "../components/main/FilterableData.vue";
+
 export default defineComponent({
   name: "Main",
+  props: ["notesProp"],
+  components: {
+    FilterableData,
+  },
   data() {
     return {
       notes: [],
     };
   },
-  // methods: {
-  //   async fetchNotes() {
-  //     const newNotes = await API.getNotes();
-  //     return newNotes;
-  //   },
-  // },
+
   async created() {
     try {
       console.log("trying to get API");
       API.getNotes()
         .then((res) => {
           console.log(res.data);
-          // this.notes = res.data;
+          this.notes = res.data;
         })
         .catch((err) => console.error(err));
-      // console.log(this.notes);
     } catch (err) {
       console.log(err);
     }
