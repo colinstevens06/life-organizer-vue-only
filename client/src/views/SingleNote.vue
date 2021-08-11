@@ -50,6 +50,11 @@ export default defineComponent({
       console.error(error);
     }
   },
+  watch: {
+    "$route.params.id": function () {
+      this.setActiveNote();
+    },
+  },
 });
 </script>
 
