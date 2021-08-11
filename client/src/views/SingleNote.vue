@@ -2,7 +2,10 @@
   <div>
     <div class="container_single-note-main-window container_notes-list">
       <SingleNoteLeftCol :notes="notes" />
-      <SingleNoteMainView :activeNote="activeNote[0]" />
+      <SingleNoteMainView
+        :activeNote="activeNote[0]"
+        @updateNote="updateAllNotes"
+      />
     </div>
     <!-- <h1>Single Note</h1>
     <p>{{ activeNote[0].name }}</p> -->
@@ -35,6 +38,13 @@ export default defineComponent({
         (note) => note._id === this.$route.params.id
       );
       this.activeNote = thisNote;
+    },
+    updateAllNotes(input) {
+      let noteToUpdate = input._id;
+      let noteToUpdateIndex = this.notes.findIndex(
+        (obj) => obj._id === noteToUpdate
+      );
+      this.notes[noteToUpdateIndex] = input;
     },
   },
   watch: {

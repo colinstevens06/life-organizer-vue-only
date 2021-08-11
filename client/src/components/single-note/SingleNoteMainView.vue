@@ -56,6 +56,7 @@ export default defineComponent({
       this.updatedNote = { ...this.updatedNote, [name]: value };
     },
     updateNoteObject: function () {
+      this.$emit("updateNote", this.updatedNote);
       API.updateNote(this.updatedNote._id, this.updatedNote);
     },
   },
