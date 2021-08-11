@@ -22,9 +22,9 @@ const API = {
   //   return axios.post("/api/notes", note)
   // },
 
-  // updateNote: function (id, note) {
-  //   return axios.put("/api/notes/" + id, note)
-  // },
+  updateNote: function (id, note) {
+    return axios.put(baseURL + "/api/notes/" + id, note)
+  },
 
   // deleteNote: function (id) {
   //   return axios.delete("/api/notes/" + id)

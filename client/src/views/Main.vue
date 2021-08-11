@@ -32,7 +32,6 @@ export default defineComponent({
   },
   methods: {
     handleSortTypeValueChange(input) {
-      console.log(input);
       if (this.sortTypeValue !== input) {
         this.sortAscending = true;
       } else {

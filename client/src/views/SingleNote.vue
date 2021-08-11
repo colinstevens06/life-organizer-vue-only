@@ -22,7 +22,7 @@ export default defineComponent({
   data() {
     return {
       notes: [],
-      activeNote: {},
+      activeNote: [],
     };
   },
   components: {
@@ -35,7 +35,11 @@ export default defineComponent({
         (note) => note._id === this.$route.params.id
       );
       this.activeNote = thisNote;
-      console.log(this.activeNote);
+    },
+  },
+  watch: {
+    "$route.params.id": function () {
+      this.setActiveNote();
     },
   },
   async created() {
@@ -49,11 +53,6 @@ export default defineComponent({
     } catch (error) {
       console.error(error);
     }
-  },
-  watch: {
-    "$route.params.id": function () {
-      this.setActiveNote();
-    },
   },
 });
 </script>

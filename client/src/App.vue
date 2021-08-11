@@ -28,4 +28,9 @@ export default defineComponent({
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+
+a:-webkit-any-link {
+  cursor: pointer;
+  text-decoration: none !important;
+}
 </style>

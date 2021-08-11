@@ -2,28 +2,28 @@
   <div>
     <form>
       <div class="container__update-buttons">
-        <div @click="updateNoteObject">Save</div>
+        <div @click.prevent="updateNoteObject">Save</div>
         <div @click="deleteNote">Delete</div>
         <router-link to="/">Cancel</router-link>
       </div>
       <hr />
       <input
-        :value="activeNote.name"
-        @change="handleInputChange()"
+        :value="updatedNote.name"
+        @keyup="handleInputChange"
         class="header__single-note"
         name="name"
       />
       <input
-        :value="activeNote.category"
-        @change="handleInputChange()"
+        :value="updatedNote.category"
+        @keyup="handleInputChange"
         class="subheader__single-note"
         name="category"
       />
       <hr />
 
       <textarea
-        :value="activeNote.note"
-        @change="handleInputChange()"
+        :value="updatedNote.note"
+        @keyup="handleInputChange"
         class="text__single-note form_update-note"
         name="note"
       />
@@ -36,12 +36,35 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import API from "../../utils/API";
+
 export default defineComponent({
   props: ["activeNote"],
-  methods: {
-    handleInputChange() {
-      console.log("input change");
+  data() {
+    return {
+      updatedNote: {},
+    };
+  },
+  watch: {
+    activeNote: function () {
+      this.updatedNote = this.activeNote;
     },
+  },
+  methods: {
+    handleInputChange: function (event) {
+      const { name, value } = event.target;
+      this.updatedNote = { ...this.updatedNote, [name]: value };
+    },
+    updateNoteObject: function () {
+      API.updateNote(this.updatedNote._id, this.updatedNote);
+    },
+  },
+  async created() {
+    try {
+      this.updatedNote = this.activeNote;
+    } catch (error) {
+      console.error(error);
+    }
   },
 });
 </script>
