@@ -50,7 +50,6 @@ export default defineComponent({
       this.notes[noteToUpdateIndex] = input;
     },
     addNote() {
-      console.log("add note on main.vue");
       API.getNotes().then((res) => {
         console.log("res.data", res.data);
         this.notes = res.data;

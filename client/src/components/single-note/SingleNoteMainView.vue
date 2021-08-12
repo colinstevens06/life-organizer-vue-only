@@ -59,6 +59,11 @@ export default defineComponent({
       this.$emit("updateNote", this.updatedNote);
       API.updateNote(this.updatedNote._id, this.updatedNote);
     },
+    deleteNote: function () {
+      API.deleteNote(this.updatedNote._id).then(() => {
+        window.location.href = "/";
+      });
+    },
   },
   async created() {
     try {

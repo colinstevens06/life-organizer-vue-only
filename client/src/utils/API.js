@@ -26,9 +26,9 @@ const API = {
     return axios.put(baseURL + "/api/notes/" + id, note)
   },
 
-  // deleteNote: function (id) {
-  //   return axios.delete("/api/notes/" + id)
-  // },
+  deleteNote: function (id) {
+    return axios.delete(baseURL + "/api/notes/" + id)
+  },
 
   // createToken: async () => {
   //   const user = fire.auth().currentUser
