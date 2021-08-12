@@ -6,7 +6,6 @@
       :notes="notes"
       :handleSortTypeValueChange="handleSortTypeValueChange"
       :sortTypeOrderValue="sortTypeOrderValue"
-      :key="componentKey"
     />
   </div>
 </template>
@@ -33,7 +32,6 @@ export default defineComponent({
       sortTypeValue: undefined,
       sortAscending: false,
       sortTypeOrderValue: undefined,
-      componentKey: 0,
     };
   },
   methods: {
@@ -104,3 +102,6 @@ export default defineComponent({
   },
 });
 </script>
+
+
+
