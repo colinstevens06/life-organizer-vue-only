@@ -84,15 +84,10 @@ export default defineComponent({
       }
     },
     addNote() {
-      console.log("add note on main.vue");
       API.getNotes().then((res) => {
+        console.log("res.data", res.data);
         this.notes = res.data;
       });
-    },
-  },
-  watch: {
-    "this.notes": function () {
-      this.componentKey = this.componentKey++;
     },
   },
 

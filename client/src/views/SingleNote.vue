@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CreateNoteBtn @newNote="addNewNote" />
+    <CreateNoteBtn @add-note="addNote" />
     <div class="container_single-note-main-window container_notes-list">
       <SingleNoteLeftCol :notes="notes" />
       <SingleNoteMainView
@@ -49,8 +49,12 @@ export default defineComponent({
       );
       this.notes[noteToUpdateIndex] = input;
     },
-    addNewNote(input) {
-      this.notes.push(input);
+    addNote() {
+      console.log("add note on main.vue");
+      API.getNotes().then((res) => {
+        console.log("res.data", res.data);
+        this.notes = res.data;
+      });
     },
   },
   watch: {

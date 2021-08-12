@@ -66,16 +66,18 @@ export default defineComponent({
         name: this.newNote.name,
         category: this.newNote.category,
         note: this.newNote.note,
-      }).catch((err) => console.error(err));
+      })
+        .then(() => {
+          this.$emit("add-note", this.newNote);
+        })
 
-      this.$emit("add-note", this.newNote);
+        .catch((err) => console.error(err));
 
       this.isOpen = false;
+      this.name = "";
+      this.category = "";
+      this.note = "";
     },
-    // handleInputChange: function (event) {
-    //   const { name, value } = event.target;
-    //   this.newNote = { ...this.newNote, [name]: value };
-    // },
   },
 });
 </script>
@@ -138,7 +140,8 @@ export default defineComponent({
   justify-content: space-evenly;
   margin-top: 10px;
 }
-.row_new-note-form-buttons div {
+.row_new-note-form-buttons div,
+.row_new-note-form-buttons input {
   transition: 0.5s;
   width: 200px;
   background-color: #e00045;
@@ -149,9 +152,11 @@ export default defineComponent({
   text-align: center;
   padding: 12px 24px;
   border-radius: 5px;
+  margin: 0;
 }
 
-.row_new-note-form-buttons div:hover {
+.row_new-note-form-buttons div:hover,
+.row_new-note-form-buttons input:hover {
   cursor: pointer;
   transition: 0.5s;
   background-color: #ffffff;
