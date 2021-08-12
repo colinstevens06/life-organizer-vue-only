@@ -1,5 +1,6 @@
 <template>
   <div>
+    <CreateNoteBtn @newNote="addNewNote" />
     <div class="container_single-note-main-window container_notes-list">
       <SingleNoteLeftCol :notes="notes" />
       <SingleNoteMainView
@@ -18,6 +19,7 @@ import { defineComponent } from "vue";
 
 import SingleNoteLeftCol from "../components/single-note/SingleNoteLeftCol.vue";
 import SingleNoteMainView from "../components/single-note/SingleNoteMainView.vue";
+import CreateNoteBtn from "../components/CreateNoteBtn.vue";
 
 import API from "../utils/API";
 
@@ -31,6 +33,7 @@ export default defineComponent({
   components: {
     SingleNoteLeftCol,
     SingleNoteMainView,
+    CreateNoteBtn,
   },
   methods: {
     setActiveNote() {
@@ -45,6 +48,9 @@ export default defineComponent({
         (obj) => obj._id === noteToUpdate
       );
       this.notes[noteToUpdateIndex] = input;
+    },
+    addNewNote(input) {
+      this.notes.push(input);
     },
   },
   watch: {

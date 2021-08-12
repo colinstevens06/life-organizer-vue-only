@@ -1,9 +1,12 @@
 <template>
   <div>
+    <CreateNoteBtn @add-note="addNote" />
+
     <FilterableData
       :notes="notes"
       :handleSortTypeValueChange="handleSortTypeValueChange"
       :sortTypeOrderValue="sortTypeOrderValue"
+      :key="componentKey"
     />
   </div>
 </template>
@@ -15,12 +18,14 @@ import API from "../utils/API";
 import Sorter from "../utils/sorting";
 
 import FilterableData from "../components/main/FilterableData.vue";
+import CreateNoteBtn from "../components/CreateNoteBtn.vue";
 
 export default defineComponent({
   name: "Main",
   props: ["notesProp"],
   components: {
     FilterableData,
+    CreateNoteBtn,
   },
   data() {
     return {
@@ -28,6 +33,7 @@ export default defineComponent({
       sortTypeValue: undefined,
       sortAscending: false,
       sortTypeOrderValue: undefined,
+      componentKey: 0,
     };
   },
   methods: {
@@ -77,7 +83,19 @@ export default defineComponent({
         this.notes = sortedNotes;
       }
     },
+    addNote() {
+      console.log("add note on main.vue");
+      API.getNotes().then((res) => {
+        this.notes = res.data;
+      });
+    },
   },
+  watch: {
+    "this.notes": function () {
+      this.componentKey = this.componentKey++;
+    },
+  },
+
   async created() {
     try {
       API.getNotes()
